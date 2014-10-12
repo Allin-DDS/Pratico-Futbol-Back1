@@ -38,6 +38,7 @@ public class BuscadorDeJugadorView extends SimpleWindow<BuscadorDeJugadorViewMod
 	public BuscadorDeJugadorView(WindowOwner parent) {
 		super(parent, new BuscadorDeJugadorViewModel());
 		unModel = new Futbol5ViewModel();
+		this.getModelObject().buscar(null);
 	}
 
 	@Override
@@ -46,7 +47,7 @@ public class BuscadorDeJugadorView extends SimpleWindow<BuscadorDeJugadorViewMod
 		  new Button(actionsPanel)//
 		.setCaption("Buscar jugador")
 		.disableOnError()
-		.onClick(()-> this.getModelObject().buscar());
+		.onClick(()-> this.getModelObject().buscar(new Jugador(0)));
 		  
 		  new Button(actionsPanel)//
 		.setCaption("Datos del Jugador")

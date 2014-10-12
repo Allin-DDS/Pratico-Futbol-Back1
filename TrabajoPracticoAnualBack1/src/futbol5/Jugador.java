@@ -18,6 +18,8 @@ import java.util.stream.Stream;
 
 import org.uqbar.commons.utils.Observable;
 import org.uqbar.commons.utils.Transactional;
+
+import ui.entidadesUtiles.ComboBoxBoolean;
 @Transactional
 @Observable
 
@@ -31,9 +33,9 @@ public class Jugador {
 	private int cantidadInfracPorNoTenerSustituto;
 	//private double promedioDeUltimoPartido = 0;
 	private double promedioBuscado;
-	private boolean handicapCriterio;
+	private ComboBoxBoolean handicapCriterio;
+	private ComboBoxBoolean promedioCriterio;
 	private int infraccionesCriterio;
-	private boolean promedioCriterio;
 	private Jugador jugador;
 	private Collection<Infraccion> infracciones = new ArrayList<Infraccion>();
 	private Collection<Jugador> amigos = new ArrayList<Jugador>();
@@ -182,29 +184,29 @@ public class Jugador {
 	/**
 	 * @return the handicapCriterio
 	 */
-	public boolean isHandicapCriterio() {
+	public ComboBoxBoolean getHandicapCriterio() {
 		return handicapCriterio;
 	}
 
 	/**
-	 * @param handicapCriterio the handicapCriterio to set
+	 * @param handicapElegidoCriterio the handicapCriterio to set
 	 */
-	public void setHandicapCriterio(boolean handicapCriterio) {
-		this.handicapCriterio = handicapCriterio;
+	public void setHandicapCriterio(ComboBoxBoolean handicapElegidoCriterio) {
+		this.handicapCriterio = handicapElegidoCriterio;
 	}
 
 	/**
 	 * @return the promedioCriterio
 	 */
-	public boolean isPromedioCriterio() {
+	public ComboBoxBoolean getPromedioCriterio() {
 		return promedioCriterio;
 	}
 
 	/**
-	 * @param promedioCriterio the promedioCriterio to set
+	 * @param promedioElegidoCriterio the promedioCriterio to set
 	 */
-	public void setPromedioCriterio(boolean promedioCriterio) {
-		this.promedioCriterio = promedioCriterio;
+	public void setPromedioCriterio(ComboBoxBoolean promedioElegidoCriterio) {
+		this.promedioCriterio = promedioElegidoCriterio;
 	}
 
 	/**

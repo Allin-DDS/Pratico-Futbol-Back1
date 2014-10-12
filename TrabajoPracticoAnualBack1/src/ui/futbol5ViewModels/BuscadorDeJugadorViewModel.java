@@ -20,8 +20,8 @@ public class BuscadorDeJugadorViewModel{
 
 private List<Jugador> resultadoDeBusqueda;
 private Jugador jugadorSeleccionado;
-private String nombre;
-private String apodo;
+private String nombre = null;
+private String apodo = null;
 private String fecha = null;
 private int handicap;
 private double promedio;
@@ -32,24 +32,32 @@ private List<ComboBoxSerial> filtrosDeInfraccion;
 
 
 
-	public void buscar() {
+	public void buscar(Jugador jugador) {
 		
-		this.validar();
-		Jugador jugador = new Jugador(0);
+		if(jugador != null){
 		jugador.setApodo(apodo);
 		jugador.setFechaDeNacimiento(this.fechaRango());
 		jugador.setHandicap(handicap);
 		jugador.setNombre(nombre);
 		jugador.setPromedioBuscado(promedio);
-		jugador.setHandicapCriterio(handicapElegidoCriterio.isBooleano());
-		jugador.setInfraccionesCriterio(infraccionElegidaCriterio.getSerial());
-		jugador.setPromedioCriterio(promedioElegidoCriterio.isBooleano());
+		jugador.setHandicapCriterio(this.handicapElegidoCriterio);
+		jugador.setPromedioCriterio(this.promedioElegidoCriterio);
+
 		
+		if (this.infraccionElegidaCriterio == null) {
+			jugador.setInfraccionesCriterio(-1);
+		}
+		else{
+			jugador.setInfraccionesCriterio(infraccionElegidaCriterio.getSerial());
+		}
+		
+		}				
 		resultadoDeBusqueda = Repositorio.getInstance().buscar(jugador);
+
 	}
 
 
-	private void validar() {
+	/*private void validar() {
 		if (this.infraccionElegidaCriterio == null) {
 			throw new UserException("Debe elegir un filtrado de infracción");
 		}
@@ -60,7 +68,7 @@ private List<ComboBoxSerial> filtrosDeInfraccion;
 			throw new UserException("Debe elegir un filtrado de promedio");
 		}
 
-	}
+	}*/
 
 
 	public double getPromedio() {
@@ -208,7 +216,7 @@ public List<ComboBoxBoolean> getFiltrosDesdeHasta() {
 	List<ComboBoxBoolean> list = new ArrayList<ComboBoxBoolean>();
 	
 	list.add(new ComboBoxBoolean("Desde",true));
-	list.add( new ComboBoxBoolean("Hasta",false));
+	list.add(new ComboBoxBoolean("Hasta",false));
 	return list;
 }
 

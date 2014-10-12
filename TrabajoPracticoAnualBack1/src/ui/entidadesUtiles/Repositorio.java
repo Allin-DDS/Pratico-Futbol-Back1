@@ -52,16 +52,12 @@ public class Repositorio {
 	private Jugador dani;
 	private InscripcionCondicional inscripciondani;
 	private Condicion condiciondani;
-
 	private Jugador maria;
 	private InscripcionSolidaria inscripcionMaria;
 	private Jugador gordo;
 	private InscripcionSolidaria inscripciongordo;
-	
-
 	private CriterioHandicap criterioHandicap;
 	private CriterioParesEImpares criterioParesEImpares;
-	
 	private Partido partidoAnterior;
 	private Partido amistoso;
 
@@ -276,12 +272,13 @@ public List<Jugador> buscar(Jugador jugadorBuscado) {
 	List<Jugador> resultados = new ArrayList<Jugador>();
 
 	for (Jugador jugador : this.jugadores) {
-		if (this.matchearDatos(jugador,jugadorBuscado)
+		if (jugadorBuscado == null ||
+				(this.matchearDatos(jugador,jugadorBuscado)
 				&& this.fechaAnterior(jugador,jugadorBuscado)
 				&& this.infraccion(jugador,jugadorBuscado)
-				&& this.desdeHastaHandicap(jugador,jugadorBuscado) 
-				&& this.desdeHastaPromedio(jugador,jugadorBuscado)
-				) {
+				&& (jugadorBuscado.getHandicapCriterio() == null || ((jugadorBuscado.getHandicapCriterio() != null) && this.desdeHastaHandicap(jugador,jugadorBuscado)))
+				&& (jugadorBuscado.getPromedioCriterio() == null || ((jugadorBuscado.getPromedioCriterio() != null) && this.desdeHastaPromedio(jugador,jugadorBuscado)))
+				)) {
 			
 			
 			resultados.add(jugador);
@@ -293,10 +290,12 @@ public List<Jugador> buscar(Jugador jugadorBuscado) {
 
 
 private boolean desdeHastaPromedio(Jugador jugador, Jugador jugadorBuscado) {
-	double promedioBuscado = jugadorBuscado.getPromedioBuscado();
-	double promedio = jugador.getPromedioDeUltimoPartido();
 	
-	if((jugadorBuscado.isPromedioCriterio() && promedio >  promedioBuscado)|| (!jugadorBuscado.isHandicapCriterio() && promedio <= promedioBuscado)){ //desde es true
+	
+	double promedioBuscado = jugadorBuscado.getPromedioBuscado();
+	double promedio = jugador.getPromedioDeTodosLosPartido();
+	
+	if((jugadorBuscado.getPromedioCriterio().isBooleano() && promedio >  promedioBuscado)|| (!jugadorBuscado.getPromedioCriterio().isBooleano() && promedio <= promedioBuscado)){ //desde es true
 		return true;
 	}
 	return false;
@@ -305,9 +304,10 @@ private boolean desdeHastaPromedio(Jugador jugador, Jugador jugadorBuscado) {
 
 
 private boolean desdeHastaHandicap(Jugador jugador, Jugador jugadorBuscado) {
+
 	double handicapBuscado = jugadorBuscado.getHandicap();
 	double handicap = jugador.getHandicap();
-	if((jugadorBuscado.isHandicapCriterio() && handicap >  handicapBuscado)|| (!jugadorBuscado.isHandicapCriterio() && handicap <= handicapBuscado)){ //desde es true
+	if((jugadorBuscado.getHandicapCriterio().isBooleano() && handicap >  handicapBuscado)|| (!jugadorBuscado.getHandicapCriterio().isBooleano() && handicap <= handicapBuscado)){ //desde es true
 		return true;
 	}
 	return false;
@@ -318,6 +318,7 @@ private boolean desdeHastaHandicap(Jugador jugador, Jugador jugadorBuscado) {
 private boolean infraccion(Jugador jugador, Jugador jugadorBuscado) {
 
 	int infracciones = jugador.getInfracciones().size();
+	
 	int criterio = jugadorBuscado.getInfraccionesCriterio();
 	
 	if( (criterio < 0) || (infracciones == 0 && criterio == 0) || (infracciones > 0 && criterio > 0) ){
@@ -331,6 +332,11 @@ private boolean infraccion(Jugador jugador, Jugador jugadorBuscado) {
 
 
 private boolean fechaAnterior(Jugador jugador, Jugador jugadorBuscado) {
+	
+
+	if(jugadorBuscado.getFechaDeNacimientoDate() == null){
+		return true;
+	}
 	if(jugador.getFechaDeNacimientoDate().before(jugadorBuscado.getFechaDeNacimientoDate())){
 		return true;
 	}
@@ -340,7 +346,8 @@ private boolean fechaAnterior(Jugador jugador, Jugador jugadorBuscado) {
 
 
 private boolean matchearDatos(Jugador jugador, Jugador jugadorBuscado) {
-	if(	match(jugadorBuscado.getNombre(), jugador.getNombre()) && match(jugadorBuscado.getApodo(), jugador.getApodo())){
+	
+if(	match(jugadorBuscado.getNombre(), jugador.getNombre()) && match(jugadorBuscado.getApodo(), jugador.getApodo())){
 		return true;
 	};
 	return false;
