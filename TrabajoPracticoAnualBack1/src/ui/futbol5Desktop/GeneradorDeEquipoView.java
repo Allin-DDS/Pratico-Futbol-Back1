@@ -17,7 +17,8 @@ import org.uqbar.arena.windows.WindowOwner;
 import org.uqbar.lacar.ui.model.ListBuilder;
 import org.uqbar.lacar.ui.model.bindings.Binding;
 
-import ui.futbol5ViewModels.Futbol5ViewModel;
+import ui.entidadesUtiles.AsistenteCreaciones;
+import ui.entidadesUtiles.Transformadors;
 import ui.futbol5ViewModels.GeneradorDeEquipoViewModel;
 import dividirEquipos.CriterioParaDividirEquipos;
 
@@ -25,11 +26,11 @@ import dividirEquipos.CriterioParaDividirEquipos;
 @SuppressWarnings("serial")
 public class GeneradorDeEquipoView extends SimpleWindow<GeneradorDeEquipoViewModel> {
 	
-	private Futbol5ViewModel unModel;
+	private AsistenteCreaciones asistente;
 	public GeneradorDeEquipoView(WindowOwner parent) {
 		super(parent, new GeneradorDeEquipoViewModel());
 		this.getModelObject().init();
-		this.unModel = new Futbol5ViewModel();
+		this.asistente = new AsistenteCreaciones();
 		
 	}
 	@Override
@@ -58,20 +59,19 @@ public class GeneradorDeEquipoView extends SimpleWindow<GeneradorDeEquipoViewMod
 
 	@Override
 	protected void createFormPanel(Panel mainPanel) {
-		Panel SelectorCriterioFormPanel = this.unModel.nuevoPanel(mainPanel, 2);
-		Panel SelectorOrdenFormPanel = this.unModel.nuevoPanel(mainPanel, 4);
+		Panel SelectorCriterioFormPanel = this.asistente.nuevoPanel(mainPanel, 2);
+		Panel SelectorOrdenFormPanel = this.asistente.nuevoPanel(mainPanel, 4);
 	
 
 		this.crearCriterioDeDivisionDeEquipo(SelectorCriterioFormPanel);	
 		this.crearCriterioDeOrdenamiento(SelectorOrdenFormPanel);
 		
-		Panel equiposFormPanel = this.unModel.nuevoPanel(mainPanel,2);
+		Panel equiposFormPanel = this.asistente.nuevoPanel(mainPanel,2);
 	
 	    new Label(equiposFormPanel).setText("Equipo Nº1");
 	    new Label(equiposFormPanel).setText("Equipo Nº2");
 
 	    this.crearGrillaDeEquipo("equipoNro1",equiposFormPanel);
-	   // this.getModelObject().crear(mainPanel);
 	    this.crearGrillaDeEquipo("equipoNro2",equiposFormPanel);
 		
 	}

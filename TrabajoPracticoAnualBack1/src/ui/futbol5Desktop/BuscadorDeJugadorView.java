@@ -2,14 +2,6 @@ package ui.futbol5Desktop;
 
 import java.awt.Color;
 
-
-
-
-
-
-
-
-
 import org.uqbar.arena.bindings.NotNullObservable;
 import org.uqbar.arena.bindings.PropertyAdapter;
 import org.uqbar.arena.widgets.Button;
@@ -23,21 +15,21 @@ import org.uqbar.arena.windows.WindowOwner;
 import org.uqbar.lacar.ui.model.ListBuilder;
 import org.uqbar.lacar.ui.model.bindings.Binding;
 
+import ui.entidadesUtiles.AsistenteCreaciones;
 import ui.entidadesUtiles.ComboBoxBoolean;
 import ui.entidadesUtiles.ComboBoxSerial;
 import ui.futbol5ViewModels.BuscadorDeJugadorViewModel;
-import ui.futbol5ViewModels.Futbol5ViewModel;
 import futbol5.Jugador;
 
 @SuppressWarnings("serial")
 public class BuscadorDeJugadorView extends SimpleWindow<BuscadorDeJugadorViewModel> {
 
 
-	private ui.futbol5ViewModels.Futbol5ViewModel unModel;
+	private ui.entidadesUtiles.AsistenteCreaciones asistente;
 
 	public BuscadorDeJugadorView(WindowOwner parent) {
 		super(parent, new BuscadorDeJugadorViewModel());
-		unModel = new Futbol5ViewModel();
+		asistente = new AsistenteCreaciones();
 		this.getModelObject().buscar(null);
 	}
 
@@ -59,20 +51,20 @@ public class BuscadorDeJugadorView extends SimpleWindow<BuscadorDeJugadorViewMod
 	@Override
 	protected void createFormPanel(Panel mainPanel) {
 		
-		Panel equiposFormPanel = this.unModel.nuevoPanel(mainPanel,2);
+		Panel equiposFormPanel = this.asistente.nuevoPanel(mainPanel,2);
 	
 		
 		
 		this.busquedaGenerales(equiposFormPanel);
 		this.crearFiltroInfracciones(equiposFormPanel);
 		
-		Panel rangoFormPanel = this.unModel.nuevoPanel(mainPanel,3);
+		Panel rangoFormPanel = this.asistente.nuevoPanel(mainPanel,3);
 		this.crearRangoHandicap(rangoFormPanel);
 		this.crearRangoPromedio(rangoFormPanel);
 		
 
-		Panel grillaEquiposFormPanel = this.unModel.nuevoPanel(mainPanel,1);
-		Table<Jugador> table = this.unModel.generarTablaJugador(grillaEquiposFormPanel);
+		Panel grillaEquiposFormPanel = this.asistente.nuevoPanel(mainPanel,1);
+		Table<Jugador> table = this.asistente.generarTablaJugador(grillaEquiposFormPanel);
 
 		table.bindItemsToProperty("resultadoDeBusqueda");
 		table.bindValueToProperty("jugadorSeleccionado");
@@ -124,9 +116,9 @@ public class BuscadorDeJugadorView extends SimpleWindow<BuscadorDeJugadorViewMod
 	}
 
 	private void busquedaGenerales(Panel equiposFormPanel) {
-		this.unModel.crearLabelDeDatosAIngresar("Nombre: ","nombre",equiposFormPanel);
-		this.unModel.crearLabelDeDatosAIngresar("Apodo: ","apodo",equiposFormPanel);
-		this.unModel.crearLabelDeDatosAIngresar("Fecha: ","fecha",equiposFormPanel);
+		this.asistente.crearLabelDeDatosAIngresar("Nombre: ","nombre",equiposFormPanel);
+		this.asistente.crearLabelDeDatosAIngresar("Apodo: ","apodo",equiposFormPanel);
+		this.asistente.crearLabelDeDatosAIngresar("Fecha: ","fecha",equiposFormPanel);
 		
 
 

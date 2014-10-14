@@ -111,7 +111,7 @@ public class GeneradorDeEquipoViewModel {
 		}
 
 		setEquipoNro1((List<Inscripcion>) partido.getEquipo1());
-		 setEquipoNro2((List<Inscripcion>) partido.getEquipo2());
+		setEquipoNro2((List<Inscripcion>) partido.getEquipo2());
 	}
 	private void validar() {
 		if (this.criterioSeleccionado == null) {
@@ -213,45 +213,12 @@ public class GeneradorDeEquipoViewModel {
 		}
 		return this.inscriptoSeleccionado.getJugador();
 	}
-	public void crear(Panel mainPanel) {
-		Table<Inscripcion> table = new Table<Inscripcion>(mainPanel, Inscripcion.class);
-		table.setHeigth(100);
-		table.setWidth(150);
 
-		table.bindValueToProperty("inscriptoSeleccionado");
-
-		Column<Inscripcion> columnaJugador = new Column<Inscripcion>(table) //
-		.setTitle("Jugadores del Equipo")
-		.setFixedSize(150)
-		.bindContentsToProperty("nombreJugador");
-
-	if(this.equipoNro1 != null){
-		this.generarEquiposTentativos();
-		for(Inscripcion ins : this.equipoNro1){
-			if(ins.getJugador().getHandicap() > 8){
-				columnaJugador.setForeground(Color.blue);
-				
-			}
-		table.bindItemsToProperty("equipoNro1");	
-		}
-	}
-		
-	}
 	public Inscripcion getInscripto() {
 		return inscripto;
 	}
 	public void setInscripto(Inscripcion inscripto) {
 		this.inscripto = inscripto;
 	}
-
-
-
-
-	
-
-
-	
-
-
-
 }
+

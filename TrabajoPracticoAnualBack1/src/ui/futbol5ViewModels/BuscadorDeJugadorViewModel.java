@@ -101,13 +101,9 @@ else{
 
 
 	public List<Jugador> getResultadoDeBusqueda() {
-		//new RepositorioDeJugadores().getJugadores();
 		return resultadoDeBusqueda;
 	}
 
-	/**
-	 * @param resultadoDeBusqueda the resultadoDeBusqueda to set
-	 */
 	public void setResultadoDeBusqueda(List<Jugador> resultadoDeBusqueda) {
 		this.resultadoDeBusqueda = resultadoDeBusqueda;
 	}
@@ -155,9 +151,9 @@ public void setFecha(String fecha) {
 public List<ComboBoxSerial> getFiltroDeInfraccion() {
 	List<ComboBoxSerial> list = new ArrayList<ComboBoxSerial>();
 	
-	list.add( new ComboBoxSerial("Solo los que tiene Infracciones",1));
-	list.add( new ComboBoxSerial("Solo los que no tiene Infracciones",0));
-	list.add( new ComboBoxSerial("Todos",-1));
+	list.add(new ComboBoxSerial("Solo los que tiene Infracciones",1));
+	list.add(new ComboBoxSerial("Solo los que no tiene Infracciones",0));
+	list.add(new ComboBoxSerial("Todos",-1));
 	
 	return list;
 }
@@ -172,9 +168,7 @@ public void setHandicap(int handicap) {
 	this.handicap = handicap;
 }
 
-/**
- * @return the filtrosDeInfraccion
- */
+
 public List<ComboBoxSerial> getFiltrosDeInfraccion() {
 	return filtrosDeInfraccion;
 }
@@ -220,34 +214,18 @@ public List<ComboBoxBoolean> getFiltrosDesdeHasta() {
 	return list;
 }
 
-
-
-
 public void setFiltrosDeInfraccion(List<ComboBoxSerial> filtrosDeInfraccion) {
 	this.filtrosDeInfraccion = filtrosDeInfraccion;
 }
 
 
-/**
- * @return the jugadorSeleccionado
- */
 public Jugador getJugadorSeleccionado() {
 	return jugadorSeleccionado;
 }
 
 
-/**
- * @param jugadorSeleccionado the jugadorSeleccionado to set
- */
 public void setJugadorSeleccionado(Jugador jugadorSeleccionado) {
 	this.jugadorSeleccionado = jugadorSeleccionado;
 }
 
-
-
-
-
 }
-
-
-

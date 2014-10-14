@@ -1,4 +1,4 @@
-package ui.futbol5Desktop;
+package ui.entidadesUtiles;
 
 import java.awt.Color;
 

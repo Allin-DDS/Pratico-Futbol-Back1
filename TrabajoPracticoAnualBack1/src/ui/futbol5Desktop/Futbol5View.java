@@ -2,21 +2,25 @@ package ui.futbol5Desktop;
 
 import java.awt.Color;
 
+import org.uqbar.arena.layout.ColumnLayout;
 import org.uqbar.arena.layout.VerticalLayout;
 import org.uqbar.arena.widgets.Button;
 import org.uqbar.arena.widgets.Label;
 import org.uqbar.arena.widgets.Panel;
 import org.uqbar.arena.windows.MainWindow;
 
-import ui.futbol5ViewModels.Futbol5ViewModel;
+import ui.futbol5ViewModels.GeneradorDeEquipoViewModel;
 
 
 
-public class Futbol5View extends MainWindow<Futbol5ViewModel>{ 
+@SuppressWarnings("serial")
+public class Futbol5View extends MainWindow<GeneradorDeEquipoViewModel> { 
 	
-	public Futbol5View() {
-		super(new Futbol5ViewModel());
-}
+
+
+	public Futbol5View(GeneradorDeEquipoViewModel model) {
+		super(model);
+	}
 
 	@Override
 	public void createContents(Panel mainPanel) {
@@ -29,7 +33,9 @@ public class Futbol5View extends MainWindow<Futbol5ViewModel>{
 		    .setForeground(Color.BLACK)
 		    .setFontSize(16);	
 		
-		Panel panelBusqueda = this.getModelObject().nuevoPanel(mainPanel, 2);
+		    
+			Panel panelBusqueda = new Panel(mainPanel);
+			panelBusqueda.setLayout(new ColumnLayout(2));
 		
 		new Label(panelBusqueda).setText("Clickear para generar los equipos")
 		.setForeground(Color.blue);
@@ -45,7 +51,7 @@ public class Futbol5View extends MainWindow<Futbol5ViewModel>{
 
 	  }
 	 public static void main(String[] args) {
-		    new Futbol5View().startApplication();
+		    new Futbol5View(new GeneradorDeEquipoViewModel()).startApplication();
 		  }		
 
 }
