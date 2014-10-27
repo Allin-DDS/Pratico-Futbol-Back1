@@ -1,8 +1,6 @@
 package ui.futbol5Desktop;
 
 import java.awt.Color;
-
-import org.uqbar.arena.aop.windows.TransactionalDialog;
 import org.uqbar.arena.widgets.Button;
 import org.uqbar.arena.widgets.Label;
 import org.uqbar.arena.widgets.Panel;
@@ -12,8 +10,8 @@ import org.uqbar.arena.windows.SimpleWindow;
 import org.uqbar.arena.windows.WindowOwner;
 
 import ui.entidadesUtiles.AsistenteCreaciones;
-import futbol5.Infraccion;
-import futbol5.Jugador;
+import model.futbol5.Infraccion;
+import model.futbol5.Jugador;
 
 @SuppressWarnings("serial")
 public class DatosDeJugadorView extends SimpleWindow<Jugador> {

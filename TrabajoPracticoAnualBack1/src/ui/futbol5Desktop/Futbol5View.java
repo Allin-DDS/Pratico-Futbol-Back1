@@ -13,6 +13,7 @@ import ui.futbol5ViewModels.GeneradorDeEquipoViewModel;
 
 
 
+
 @SuppressWarnings("serial")
 public class Futbol5View extends MainWindow<GeneradorDeEquipoViewModel> { 
 	
@@ -20,6 +21,13 @@ public class Futbol5View extends MainWindow<GeneradorDeEquipoViewModel> {
 
 	public Futbol5View(GeneradorDeEquipoViewModel model) {
 		super(model);
+	try{
+		
+		db.EntityManagerHelper.beginTransaction();
+}
+		catch(Exception ex){
+		db.EntityManagerHelper.rollback();
+		}
 	}
 
 	@Override
@@ -48,6 +56,12 @@ public class Futbol5View extends MainWindow<GeneradorDeEquipoViewModel> {
 		new Button(panelBusqueda)
 		.setCaption("Buscar Jugador")
 		.onClick(() -> new BuscadorDeJugadorView(this).open());
+		
+		new Label(panelBusqueda).setText("Equipos previamente generado")
+		.setForeground(Color.blue);
+		new Button(panelBusqueda)
+		.setCaption("Equipos generados")
+		.onClick(() -> new EquiposGeneradoView(this).open());
 
 	  }
 	 public static void main(String[] args) {

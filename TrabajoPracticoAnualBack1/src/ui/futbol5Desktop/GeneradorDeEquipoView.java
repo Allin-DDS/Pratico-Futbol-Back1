@@ -1,7 +1,7 @@
 package ui.futbol5Desktop;
 
-import inscripcion.Inscripcion;
-import ordenamiento.CriterioDeOrden;
+import model.inscripcion.Inscripcion;
+import model.ordenamiento.CriterioDeOrden;
 
 import org.uqbar.arena.bindings.NotNullObservable;
 import org.uqbar.arena.bindings.PropertyAdapter;
@@ -20,7 +20,7 @@ import org.uqbar.lacar.ui.model.bindings.Binding;
 import ui.entidadesUtiles.AsistenteCreaciones;
 import ui.entidadesUtiles.Transformadors;
 import ui.futbol5ViewModels.GeneradorDeEquipoViewModel;
-import dividirEquipos.CriterioParaDividirEquipos;
+import model.dividirEquipos.CriterioParaDividirEquipos;
 
 
 @SuppressWarnings("serial")
@@ -85,7 +85,7 @@ public class GeneradorDeEquipoView extends SimpleWindow<GeneradorDeEquipoViewMod
 		table.bindItemsToProperty(string);
 		table.bindValueToProperty("inscriptoSeleccionado");
 
-		Column<Inscripcion> columnaJugador = new Column<Inscripcion>(table) //
+		new Column<Inscripcion>(table) //
 		.setTitle("Jugadores del Equipo")
 		.setFixedSize(150)
 		.bindContentsToProperty("nombreJugador");

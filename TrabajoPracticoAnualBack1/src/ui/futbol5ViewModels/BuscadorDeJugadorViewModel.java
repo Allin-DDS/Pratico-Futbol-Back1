@@ -14,7 +14,7 @@ import org.uqbar.commons.utils.Observable;
 import ui.entidadesUtiles.ComboBoxBoolean;
 import ui.entidadesUtiles.ComboBoxSerial;
 import ui.entidadesUtiles.Repositorio;
-import futbol5.Jugador;
+import model.futbol5.Jugador;
 @Observable
 public class BuscadorDeJugadorViewModel{
 

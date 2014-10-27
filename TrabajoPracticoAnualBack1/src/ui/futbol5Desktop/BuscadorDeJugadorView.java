@@ -19,7 +19,7 @@ import ui.entidadesUtiles.AsistenteCreaciones;
 import ui.entidadesUtiles.ComboBoxBoolean;
 import ui.entidadesUtiles.ComboBoxSerial;
 import ui.futbol5ViewModels.BuscadorDeJugadorViewModel;
-import futbol5.Jugador;
+import model.futbol5.Jugador;
 
 @SuppressWarnings("serial")
 public class BuscadorDeJugadorView extends SimpleWindow<BuscadorDeJugadorViewModel> {

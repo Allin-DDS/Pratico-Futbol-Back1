@@ -1,57 +1,23 @@
 package ui.futbol5ViewModels;
 
-import inscripcion.Inscripcion;
-
-
-
-
-
-
-
-
-
-
-import java.awt.Color;
+import model.inscripcion.Inscripcion;
 import java.util.ArrayList;
 import java.util.List;
 
-
-
-
-
-
-
-
-
-
 import javax.swing.JOptionPane;
-
-import org.uqbar.arena.widgets.Panel;
-import org.uqbar.arena.widgets.tables.Column;
-import org.uqbar.arena.widgets.tables.Table;
-import org.uqbar.commons.model.ObservableUtils;
 import org.uqbar.commons.model.UserException;
 import org.uqbar.commons.utils.Observable;
 
-
-
-
-
-
-
-
-
-
-import ordenamiento.CriterioCalificacionesUltimoPartido;
-import ordenamiento.CriterioDeOrden;
-import ordenamiento.CriterioHandicap;
-import ordenamiento.MixDeCriterios;
+import model.ordenamiento.CriterioCalificacionesUltimoPartido;
+import model.ordenamiento.CriterioDeOrden;
+import model.ordenamiento.CriterioHandicap;
+import model.ordenamiento.MixDeCriterios;
 import ui.entidadesUtiles.Repositorio;
-import dividirEquipos.CriterioParaDividir2;
-import dividirEquipos.CriterioParaDividirEquipos;
-import dividirEquipos.CriterioParesEImpares;
-import futbol5.Jugador;
-import futbol5.Partido;
+import model.dividirEquipos.CriterioParaDividir2;
+import model.dividirEquipos.CriterioParaDividirEquipos;
+import model.dividirEquipos.CriterioParesEImpares;
+import model.futbol5.Jugador;
+import model.futbol5.Partido;
 
 @Observable
 public class GeneradorDeEquipoViewModel {
@@ -81,7 +47,7 @@ public class GeneradorDeEquipoViewModel {
 		List<CriterioDeOrden> ordenesGenerales = new ArrayList<CriterioDeOrden>();
 		ordenesGenerales.add(new CriterioHandicap());
 		ordenesGenerales.add(new CriterioCalificacionesUltimoPartido());
-		ordenesGenerales.add(new ordenamiento.CriterioUltimasNCalificaciones(this.getUltimosPartidosSeleccionados()));
+		ordenesGenerales.add(new model.ordenamiento.CriterioUltimasNCalificaciones(this.getUltimosPartidosSeleccionados()));
 		ordenesGenerales.add(criterioMixto);
 	
 		this.setOrdenamientosDisponibles(ordenesGenerales);
@@ -97,16 +63,15 @@ public class GeneradorDeEquipoViewModel {
 		this.partidoYjugadores = new Repositorio();
 		Partido partido = this.partidoYjugadores.getPartido();
 		
-		try{
+			try{
 			
 		this.ordenamientoSeleccionado.setPartidos(this.getUltimosPartidosSeleccionados());
 		partido.setCriterioDeOrden(this.ordenamientoSeleccionado);
 		partido.setCriterioParaDividirEquipos(criterioSeleccionado);
 		partido.generarEquipos(partido.ordenarPrimeros10());
-		
 		}
 		catch(Exception e){
-			throw new UserException("Error al generar los equipos");
+					throw new UserException("Error al generar los equipos");
 			
 		}
 
@@ -126,13 +91,21 @@ public class GeneradorDeEquipoViewModel {
 		if(this.equipoNro1 == null && this.equipoNro2 == null){
 			throw new UserException("Primero debe generar los equipos tentantivos");
 			}
+		
 		try{
-		this.partidoYjugadores.getPartido().equiposConfirmados();
-			}
-		catch(Exception e){
+			db.EntityManagerHelper.beginTransaction();
+
+			this.partidoYjugadores.inicializarJugadores();
+			this.partidoYjugadores.persistirJugadores();
+			this.partidoYjugadores.persistirInscripciones();
+			this.partidoYjugadores.partidosAnterioresPersistente(true);
+			this.partidoYjugadores.persistirPartido(ordenamientoSeleccionado,criterioSeleccionado,ultimosPartidosSeleccionados);
+		
+	db.EntityManagerHelper.commit();
+	}catch(Exception e){
 			
-			throw new UserException(e.toString());
-		}
+		throw new UserException(e.toString());
+	}
 		//No se como mostrarlo con el formato que usa arena. 
 		JOptionPane.showMessageDialog(null,"Los equipos se han confirmado satisfactoriamente");
 	}

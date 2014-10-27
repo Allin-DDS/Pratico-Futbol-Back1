@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/persistence 
+    http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd" 
+    version="2.0"> 
+  
+    <persistence-unit name="db" transaction-type="RESOURCE_LOCAL">
+    	<provider>org.hibernate.ejb.HibernatePersistence</provider>
+    	
+    	<class>model.futbol5.Jugador</class>
+    	<class>model.futbol5.Infraccion</class>
+    	<class>model.futbol5.Partido</class>
+        <class>model.ordenamiento.CriterioCalificacionesUltimoPartido</class>
+    	<class>model.ordenamiento.CriterioDeOrden</class>
+    	<class>model.ordenamiento.CriterioHandicap</class> 
+    	<class>model.ordenamiento.CriterioUltimasNCalificaciones</class>
+    	<class>model.ordenamiento.MixDeCriterios</class>
+    	<class>model.dividirEquipos.CriterioParaDividir2</class>
+     	<class>model.dividirEquipos.CriterioParaDividirEquipos</class>
+    	<class>model.dividirEquipos.CriterioParesEImpares</class>
+		<class>model.inscripcion.Inscripcion</class>     	   	    	
+ 		<class>model.inscripcion.InscripcionCondicional</class>
+		<class>model.inscripcion.InscripcionEstandar</class>     
+		<class>model.inscripcion.InscripcionPropuesta</class>     
+		<class>model.inscripcion.Condicion</class>        	  	   	    	
+
+        <properties> 
+	    <property name="hibernate.archive.autodetection" value="class"/>        
+        
+            <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" /> 
+            <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/tp" /> 
+            <property name="hibernate.connection.username" value="root" /> 
+            <property name="hibernate.connection.password" value="root" /> 
+
+            <!--  property name="hibernate.connection.driver_class" value="org.hsqldb.jdbcDriver" /> 
+            <property name="hibernate.connection.url" value="jdbc:hsqldb:mem:app-db" /> 
+            <property name="hibernate.connection.username" value="sa" /> 
+            <property name="hibernate.connection.password" value="" /> 
+            <property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect" /-->
+
+            <property name="hibernate.show_sql" value="true" /> 
+            <property name="hibernate.format_sql" value="true" /> 
+            <property name="use_sql_comments" value="true" /> 
+        
+          <property name="hibernate.hbm2ddl.auto" value="update" /> 
+
+        </properties>
+        
+        
+          
+    </persistence-unit> 
+  
+</persistence> 

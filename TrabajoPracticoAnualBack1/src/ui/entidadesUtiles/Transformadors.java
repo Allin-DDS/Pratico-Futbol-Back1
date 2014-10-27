@@ -2,8 +2,7 @@ package ui.entidadesUtiles;
 
 import java.awt.Color;
 
-import futbol5.Jugador;
-import inscripcion.Inscripcion;
+import model.futbol5.Jugador;
 
 import com.uqbar.commons.collections.Transformer;
 
