@@ -19,6 +19,8 @@ import static org.mockito.Mockito.*;
 import org.junit.Before;
 import org.junit.Test; 
 
+import java.sql.Date;
+import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
@@ -71,10 +73,14 @@ public class TestTPA {
 	
 	@Before
 	public void init(){
-		LocalDate antesDeAyer=LocalDate.of(2014,9,12);
-		LocalDate ayer=LocalDate.of(2014,9,13);
-		LocalDate hoy=LocalDate.now();
-		LocalTime hora=LocalTime.of(22,00);
+		
+		
+		Date antesDeAyer= java.sql.Date.valueOf(LocalDate.of(2014,9,13));
+		Date ayer= java.sql.Date.valueOf(LocalDate.of(2014,9,12));
+		Date hoy= java.sql.Date.valueOf(LocalDate.now());
+		
+		Time hora= Time.valueOf(LocalTime.of(22,00));
+		
 		semifinal= new Partido(antesDeAyer,hora,"calleFalsa1234");
 		pfinal= new Partido(ayer,hora,"calleFalsa1234");
 		amistoso =  new Partido(hoy,hora,"calleFalsa1234");

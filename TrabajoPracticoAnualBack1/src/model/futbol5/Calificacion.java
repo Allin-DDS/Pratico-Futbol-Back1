@@ -1,5 +1,6 @@
 package model.futbol5;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -12,9 +13,11 @@ public class Calificacion extends PersistentEntity{
 	private Jugador calificador;
 	@ManyToOne
 	private Partido partido;
+	@Column(nullable=false)
 	private String comentario;
+	@Column(nullable=false)
 	private int nota;
-	
+		
 	public Calificacion(Jugador calificador, Partido partido,  String comentario, int nota) {
 	this.calificador= calificador;
 	this.partido=partido;

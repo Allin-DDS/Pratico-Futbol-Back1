@@ -12,7 +12,6 @@ public class Administrador {
 
 	static String motivoRechazo;
 	static Collection<Partido> partidos = new ArrayList<>();
-	//static Collection<Jugador> jugadores = new ArrayList<>();
 	static Collection<InscripcionPropuesta> inscripcionesPropuestas = new ArrayList<>();
 	static Collection<InscripcionRechazada> inscripcionesRechazadas= new LinkedList<>();
     static {

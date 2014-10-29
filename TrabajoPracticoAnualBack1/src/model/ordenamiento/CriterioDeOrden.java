@@ -17,7 +17,7 @@ import org.uqbar.commons.utils.TransactionalAndObservable;
 @Entity
 @Table(name = "Criterios_de_orden")
 @Inheritance(strategy = SINGLE_TABLE)
-@DiscriminatorColumn(name = "tipo")
+@DiscriminatorColumn(name = "Criterio")
 
 public abstract class CriterioDeOrden extends model.futbol5.PersistentEntity{
 	

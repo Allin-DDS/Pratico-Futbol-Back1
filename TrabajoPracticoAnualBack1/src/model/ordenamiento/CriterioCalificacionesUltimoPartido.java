@@ -10,7 +10,7 @@ import model.futbol5.Calificacion;
 import model.futbol5.Jugador;
 import model.futbol5.Partido;
 @Entity
-@DiscriminatorValue("UltPartido")
+@DiscriminatorValue("Criterio Ultimo Partido")
 public class CriterioCalificacionesUltimoPartido extends CriterioDeOrden {
 	
 	public String getNombre(){

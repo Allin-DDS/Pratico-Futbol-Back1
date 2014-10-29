@@ -1,5 +1,6 @@
 package ui.entidadesUtiles;
 
+import java.sql.Time;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -7,6 +8,7 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
 import model.futbol5.Infraccion;
 import model.futbol5.Jugador;
 import model.futbol5.Partido;
@@ -80,8 +82,8 @@ public Repositorio(){
 	}
 
 public void nuevoPartidoInit() {
-	LocalDate hoy=LocalDate.now();
-	LocalTime hora=LocalTime.of(22,00);
+	Date hoy= java.sql.Date.valueOf(LocalDate.now());
+	Time hora= Time.valueOf(LocalTime.of(22,00));
 	
 	partido= new Partido(hoy,hora,"partidoPosta");
 	partido.altaInscripcion(inscripcionJuan);
@@ -286,8 +288,8 @@ protected boolean match(Object expectedValue, Object realValue) {
 
 public void partidosAnterioresPersistente(boolean persiste) {
 	
-	LocalDate hoy=LocalDate.now();
-	LocalTime hora=LocalTime.of(22,00);
+	Date hoy= java.sql.Date.valueOf(LocalDate.now());
+	Time hora= Time.valueOf(LocalTime.of(22,00));
 	
 	partidoAnterior= new Partido(hoy,hora,"partidoAnteriorCalle");
 	

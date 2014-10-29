@@ -1,10 +1,10 @@
 package ui.futbol5ViewModels;
 
-import model.inscripcion.Inscripcion;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JOptionPane;
+
 import org.uqbar.commons.model.UserException;
 import org.uqbar.commons.utils.Observable;
 
@@ -18,6 +18,7 @@ import model.dividirEquipos.CriterioParaDividirEquipos;
 import model.dividirEquipos.CriterioParesEImpares;
 import model.futbol5.Jugador;
 import model.futbol5.Partido;
+import model.inscripcion.Inscripcion;
 
 @Observable
 public class GeneradorDeEquipoViewModel {
@@ -57,7 +58,7 @@ public class GeneradorDeEquipoViewModel {
 		
 		
 	}
-	public void generarEquiposTentativos() {
+	public void generarEquiposTentativos(){
 		
 		this.validar();
 		this.partidoYjugadores = new Repositorio();

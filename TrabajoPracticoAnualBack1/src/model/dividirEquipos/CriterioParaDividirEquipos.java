@@ -20,13 +20,9 @@ import org.uqbar.commons.utils.TransactionalAndObservable;
 @DiscriminatorColumn(name = "tipo")
 
 public abstract class CriterioParaDividirEquipos extends model.futbol5.PersistentEntity {
-
 	public abstract void dividirEquipos(Collection<Inscripcion> equipo1, Collection<Inscripcion> equipo2,
 			PriorityQueue<Inscripcion> primeros10Ordenados);
 	public abstract String getNombre();
-	/**
-	 * @param nombre the nombre to set
-	 */
 	public void setNombre(String nombre) {
 	}
 }

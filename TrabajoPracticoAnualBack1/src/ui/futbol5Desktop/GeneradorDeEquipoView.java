@@ -1,6 +1,5 @@
 package ui.futbol5Desktop;
 
-import model.inscripcion.Inscripcion;
 import model.ordenamiento.CriterioDeOrden;
 
 import org.uqbar.arena.bindings.NotNullObservable;
@@ -21,6 +20,7 @@ import ui.entidadesUtiles.AsistenteCreaciones;
 import ui.entidadesUtiles.Transformadors;
 import ui.futbol5ViewModels.GeneradorDeEquipoViewModel;
 import model.dividirEquipos.CriterioParaDividirEquipos;
+import model.inscripcion.Inscripcion;
 
 
 @SuppressWarnings("serial")

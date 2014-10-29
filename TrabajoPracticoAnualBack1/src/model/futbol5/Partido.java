@@ -1,19 +1,19 @@
 package model.futbol5;
-import java.time.LocalDate;
-import java.time.LocalTime;
+import java.sql.Time;
 import java.util.Comparator;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.PriorityQueue;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinTable;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -31,52 +31,55 @@ import model.ordenamiento.CriterioDeOrden;
 @Entity
 @Table(name = "Partidos")
 public class Partido extends PersistentEntity {
-	@Transient
-	private LocalTime horario;
-	@Transient
-	private LocalDate fecha;
+	
+	@Column(nullable=false)
 	private String lugar;
 	private boolean equiposConfirmados;
-	@OneToMany
-	private Collection<Observador> observadores = new ArrayList<>();
+	@Column(nullable=false)
+	private Date fecha;
+	@Column(nullable=false)
+	private Time horario;
+
 	@Transient
-	private Collection<Inscripcion> inscripciones=(new PriorityQueue<>(Comparator.
-			comparing(inscripcion->inscripcion.getPrioridad())));
-	
+	private Collection<Observador> observadores = new ArrayList<>();
+
+
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinTable(name = "partidos_inscripciones", joinColumns = { 
 			@JoinColumn(name = "partido_Id") }, 
 			inverseJoinColumns = { @JoinColumn(name = "inscripcion_Id")})
-	private Collection<Inscripcion> inscriptos = new LinkedList<>();
+	private Collection<Inscripcion> inscripciones=(new PriorityQueue<>(Comparator.
+			comparing(inscripcion->inscripcion.getPrioridad())));
 	
 	@Transient
 	private Collection<Inscripcion> equipo1 = new LinkedList<>();
 	@Transient
 	private Collection<Inscripcion> equipo2 = new LinkedList<>();
+	
 	@OneToOne
 	private CriterioParaDividirEquipos criterioParaDividirEquipos;
 	@OneToOne
 	private CriterioDeOrden criterioDeOrden;
 	
-	public Partido(LocalDate dia, LocalTime hora,String lugar) {
+	public Partido(Date dia, Time hora,String lugar) {
 		this.fecha= dia;
 		this.horario= hora;
 		this.lugar=lugar;
 	}	
 	
-	public LocalTime getHorario() {
+	public Time getHorario() {
 		return horario;
 	}
 
-	public void setHorario(LocalTime horario) {
+	public void setHorario(Time horario) {
 		this.horario = horario;
 	}
 	
-	public LocalDate getFecha() {
+	public Date getFecha() {
 		return fecha;
 	}
 
-	public void setFecha(LocalDate fecha) {
+	public void setFecha(Date fecha) {
 		this.fecha = fecha;
 	}
 	
@@ -97,12 +100,15 @@ public class Partido extends PersistentEntity {
     	
     	for(Inscripcion inscripcion: equipo1){
     		inscripcion.getJugador().aumentarCantidadPartidosJugados();
+			inscripcion.setNumeroDeEquipo(1);
+
     	}
     	for(Inscripcion inscripcion: equipo2){
     		inscripcion.getJugador().aumentarCantidadPartidosJugados();
+			inscripcion.setNumeroDeEquipo(2);
+
     	}
-    	getEquipos();
-    }	
+  	}	
 	
 	public Collection<Inscripcion> getEquipo1() {
 		return equipo1;
@@ -214,21 +220,7 @@ public class Partido extends PersistentEntity {
     		throw new NoHay10InscriptosParaGenerarEquiposException("No se puede generarEquipos pq no hay 10 jugadores ");
     	criterioParaDividirEquipos.dividirEquipos(equipo1,equipo2,primeros10Ordenados);					
     }
-    public Collection<Inscripcion> getEquipos() {
-		if(equipo1 != null){
-			for(Inscripcion inscripcion: equipo1){
-			inscripcion.setNumeroDeEquipo(1);
-			inscriptos.add(inscripcion);
-			}
-		}
-		if(equipo2 != null){	
-			for(Inscripcion inscripcion: equipo2){
-					inscripcion.setNumeroDeEquipo(2);
-					inscriptos.add(inscripcion);
-			}
-			}
-		return inscriptos;
-	}
+
 
 }
 	

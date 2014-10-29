@@ -7,7 +7,7 @@ import javax.persistence.Entity;
 
 import model.futbol5.Jugador;
 @Entity
-@DiscriminatorValue("NCalif")
+@DiscriminatorValue("Criterio N Calif.")
 public class CriterioUltimasNCalificaciones extends CriterioDeOrden {
 	private int cantidadCalificaciones;
 	

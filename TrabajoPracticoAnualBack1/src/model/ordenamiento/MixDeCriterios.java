@@ -11,7 +11,7 @@ import javax.persistence.Entity;
 import model.futbol5.Jugador;
 
 @Entity
-@DiscriminatorValue("Mix")
+@DiscriminatorValue("Criterio Mix")
 public class MixDeCriterios extends CriterioDeOrden{
 
 

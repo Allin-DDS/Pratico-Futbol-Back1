@@ -10,6 +10,7 @@ import java.util.LinkedList;
 import java.util.PriorityQueue;
 import java.util.stream.Stream;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
@@ -26,20 +27,27 @@ import org.uqbar.commons.utils.Transactional;
 import ui.entidadesUtiles.ComboBoxBoolean;
 @Transactional
 @Observable
+
 @Entity
 @Table(name = "Jugadores")
 
 public class Jugador extends PersistentEntity{
 
-	
+	@Column(nullable=false,length=30)
 	private String nombre;
-	private String apodo;
-	private int edad;
-	private Date fechaDeNacimiento;
+	
+	@Column(nullable=false,length=30)
+    private String apodo;
+	
+	@Column(nullable=false)
+    private int edad;
+	
+	@Column(nullable=false)
+    private Date fechaDeNacimiento;
+	
 	private int cantidadPartidosJugados = 0;
 	private double handicap;
 	private int cantidadInfracPorNoTenerSustituto;
-	//private double promedioDeUltimoPartido = 0;
 	
 	@OneToMany
 	private Collection<Infraccion> infracciones = new ArrayList<Infraccion>();

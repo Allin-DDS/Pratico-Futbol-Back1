@@ -5,7 +5,7 @@ import javax.persistence.Entity;
 
 import model.futbol5.Jugador;
 @Entity
-@DiscriminatorValue("Estandar")
+@DiscriminatorValue("Inscripción Estandar")
 public class InscripcionEstandar extends Inscripcion {
 	
 	public InscripcionEstandar(){}

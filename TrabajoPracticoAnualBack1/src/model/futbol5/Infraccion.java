@@ -1,5 +1,6 @@
 package model.futbol5;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -15,6 +16,7 @@ public class Infraccion extends PersistentEntity{
 	
 	@ManyToOne
 	private Partido partido;
+	@Column(nullable=false)
 	private String motivo;
 
 	public Infraccion(Partido partido,String motivo){

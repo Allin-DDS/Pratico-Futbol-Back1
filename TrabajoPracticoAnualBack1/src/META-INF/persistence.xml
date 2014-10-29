@@ -21,8 +21,7 @@
     	<class>model.dividirEquipos.CriterioParesEImpares</class>
 		<class>model.inscripcion.Inscripcion</class>     	   	    	
  		<class>model.inscripcion.InscripcionCondicional</class>
-		<class>model.inscripcion.InscripcionEstandar</class>     
-		<class>model.inscripcion.InscripcionPropuesta</class>     
+		<class>model.inscripcion.InscripcionEstandar</class>         
 		<class>model.inscripcion.Condicion</class>        	  	   	    	
 
         <properties> 

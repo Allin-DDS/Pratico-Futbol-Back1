@@ -63,7 +63,7 @@ public class Futbol5View extends MainWindow<GeneradorDeEquipoViewModel> {
 		.setCaption("Equipos generados")
 		.onClick(() -> new EquiposGeneradoView(this).open());
 
-	  }
+		  }
 	 public static void main(String[] args) {
 		    new Futbol5View(new GeneradorDeEquipoViewModel()).startApplication();
 		  }		

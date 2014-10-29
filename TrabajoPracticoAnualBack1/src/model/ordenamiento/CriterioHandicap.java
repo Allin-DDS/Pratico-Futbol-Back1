@@ -8,7 +8,7 @@ import javax.persistence.Entity;
 import model.futbol5.Jugador;
 
 @Entity
-@DiscriminatorValue("Handicap")
+@DiscriminatorValue("Criterio Handicap")
 public class CriterioHandicap extends CriterioDeOrden {
 
 	public DoubleStream notas(Jugador jugador) {

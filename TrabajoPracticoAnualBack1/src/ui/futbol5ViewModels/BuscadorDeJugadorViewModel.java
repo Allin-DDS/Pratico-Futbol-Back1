@@ -32,7 +32,7 @@ private List<ComboBoxSerial> filtrosDeInfraccion;
 
 
 
-	public void buscar(Jugador jugador) {
+	public void buscar(Jugador jugador){
 		
 		if(jugador != null){
 		jugador.setApodo(apodo);

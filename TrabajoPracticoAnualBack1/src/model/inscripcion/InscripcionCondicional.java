@@ -6,11 +6,12 @@ import javax.persistence.OneToOne;
 
 import model.futbol5.Jugador;
 @Entity
-@DiscriminatorValue("Condicional")
+@DiscriminatorValue("Inscripción Condicional")
 public class InscripcionCondicional extends Inscripcion {
+	
 	@OneToOne
 	private Condicion condicion;
-
+	
 	public InscripcionCondicional(){}
 	public InscripcionCondicional(Jugador jugador,Condicion condicion){
 		this.jugador=jugador;

@@ -8,9 +8,9 @@ import javax.persistence.Inheritance;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 import model.futbol5.Jugador;
+import model.futbol5.PersistentEntity;
 
 import org.uqbar.commons.utils.Observable;
 import org.uqbar.commons.utils.Transactional;
@@ -19,30 +19,24 @@ import org.uqbar.commons.utils.Transactional;
 @Observable
 @Table(name = "Inscripciones")
 @Inheritance(strategy = SINGLE_TABLE)
-@DiscriminatorColumn(name = "tipo")
-public class Inscripcion extends model.futbol5.PersistentEntity{
+@DiscriminatorColumn(name = "Tipo")
+public class Inscripcion extends PersistentEntity{
 
 	@ManyToOne
     @JoinColumn(name="jugador_inscripcion")
 	public Jugador jugador;
 
-	int prioridad;
+	protected int prioridad;
 	int numeroDeEquipo = 0;
-	@Transient
-	int id_Jugador;
-	public int getId_Jugador() {
-		return id_Jugador;
-	}
 
-	public void setId_Jugador(int id_Jugador) {
-		this.id_Jugador = id_Jugador;
-	}
+
+	public Inscripcion(){}
+	
 
 	public int getNumeroDeEquipo() {
 		return numeroDeEquipo;
 	}
-
-	public Inscripcion(){}
+	
 	public void setNumeroDeEquipo(int numeroDeEquipo) {
 		this.numeroDeEquipo = numeroDeEquipo;
 	}

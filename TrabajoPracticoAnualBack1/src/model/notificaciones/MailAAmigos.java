@@ -1,12 +1,9 @@
 package model.notificaciones;
 
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
-
 import model.futbol5.Jugador;
 import model.futbol5.Partido;
- @Entity
- @DiscriminatorValue("MailAAmigos")
+//@Entity
+//@DiscriminatorValue("MailAAmigos")
 
 public class MailAAmigos extends Observador{
 
